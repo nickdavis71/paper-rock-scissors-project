@@ -1,0 +1,51 @@
+<!--When the user inputs a guess store the value as a string in the variable 'playerSelection'-->
+<!--Write a function that returns the computer's guess as a string in the variable 'computerChoice'-->
+<!--Write playRound function that's takes the parameters playerSelection and computerSelection 
+    and return a string declaring the winner of that round-->
+    <!--If players guess is rock and the computers guess is scissors return 'win'-->
+    <!--Else if the players guess is rock and computers guess is paper return 'loss'-->
+    <!--Else if the players guess is paper and computers guess is rock return 'win'-->
+    <!--Else if the players guess is paper and computers guess is scissors return 'loss'-->
+    <!--Else if the players guess is scissors and computers guess is paper return 'win'-->
+    <!--Else if the players guess is scissors and computers guess is rock return 'loss'-->
+    <!--Else if the players guess is the same as the computers guess rerun function-->
+<!--Write game function that calls playRound and use a for loop to repeat the playRound function for 
+    5 rounds and returns the variable logRound with the number of wins or losses-->
+<!--Write function printWinner that takes the parameter logRound and prints the winner of the game-->
+    <!--If the wins are equal 3 print 'You have won'-->
+    <!--Else 'You have lost'-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let playerSelection = prompt('Please enter your selection: Paper Rock or Scissors','');
+        playerSelection = playerSelection.toLowerCase()
+        console.log(playerSelection);
+
+       function getComputerChoice() {
+            let computerChoice = Math.floor(Math.random() * 3)
+
+            if (computerChoice === 0) {
+                return 'Paper';
+            }
+            else if (computerChoice === 1) {
+                return 'Rock';
+            }
+            else if (computerChoice === 2) {
+                return 'Scissors';
+            }
+            else {
+                return 'Error';
+            }
+        }
+        console.log(getComputerChoice());
+    </script>
+</body>
+</html>
