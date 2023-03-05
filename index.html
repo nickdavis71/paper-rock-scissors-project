@@ -1,20 +1,3 @@
-<!--When the user inputs a guess store the value as a string in the variable 'playerSelection'-->
-<!--Write a function that returns the computer's guess as a string in the variable 'computerChoice'-->
-<!--Write playRound function that's takes the parameters playerSelection and computerSelection 
-    and return a string declaring the winner of that round-->
-    <!--If players guess is rock and the computers guess is scissors return 'win'-->
-    <!--Else if the players guess is rock and computers guess is paper return 'loss'-->
-    <!--Else if the players guess is paper and computers guess is rock return 'win'-->
-    <!--Else if the players guess is paper and computers guess is scissors return 'loss'-->
-    <!--Else if the players guess is scissors and computers guess is paper return 'win'-->
-    <!--Else if the players guess is scissors and computers guess is rock return 'loss'-->
-    <!--Else if the players guess is the same as the computers guess rerun function-->
-<!--Write game function that calls playRound and use a for loop to repeat the playRound function for 
-    5 rounds and returns the variable logRound with the number of wins or losses-->
-<!--Write function printWinner that takes the parameter logRound and prints the winner of the game-->
-    <!--If the wins are equal 3 print 'You have won'-->
-    <!--Else 'You have lost'-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,47 +8,95 @@
 </head>
 <body>
     <script>
-        let playerSelection = prompt('Please enter your selection: Paper Rock or Scissors','');
-        playerSelection = playerSelection.toLowerCase()
-        console.log(playerSelection);
 
-        let computerSelection = '';
+        // Function that stores user input as a string in the variable 'playerSelection'.
+        function getPlayerSelection() {
 
+            let playerSelection = prompt('Please enter your selection: Paper Rock or Scissors','');
+            playerSelection = playerSelection.toLowerCase();
+            console.log("Player Selected: " + playerSelection);
+            return playerSelection;   
+        }
+
+        // Function that generates the computer's random guess as a string in the variable 'computerChoice'.
         function getComputerChoice() {
+
             let computerChoice = Math.floor(Math.random() * 3)
 
             if (computerChoice === 0) {
-                return computerSelection = 'paper';
+                console.log('Computer Selected: paper');
+                let computerSelection = 'paper';
+                return computerSelection;
             }
             else if (computerChoice === 1) {
-                return computerSelection = 'rock';
+                console.log('Computer Selected: rock');
+                let computerSelection = 'rock';
+                return computerSelection;
             }
             else if (computerChoice === 2) {
-                return computerSelection = 'scissors';
+                console.log('Computer Selected: scissors');
+                let computerSelection = 'scissors'
+                return computerSelection;
             }
             else {
+                console.log('Computer Selected: error');
                 return 'Error';
             }
         }
 
-        getComputerChoice();
-        console.log(computerSelection);
-
+        // Function that takes the parameters playerSelection and computerSelection 
+        // and returns a string declaring the winner of the round or replays the round if a tie.
         function playRound (playerSelection, computerSelection) {
+
             if (playerSelection === 'rock' && computerSelection === 'scissors' ||
                 playerSelection === 'paper' && computerSelection === 'rock' ||
                 playerSelection === 'scissors' && computerSelection === 'paper') {
-                return 'Player wins';
+                console.log('Player wins round');
+                return 'Player wins round';
+                
             }
             else if (playerSelection === computerSelection) {
-                return 'Tie'
+                console.log ('Tie');
+                return playRound (getPlayerSelection(),getComputerChoice());
             }
             else {
-                return 'Computer wins';
+                console.log('Computer wins round');
+                return 'Computer wins round';
             }
         }
 
-        console.log(playRound(playerSelection, computerSelection));
+        // Function that repeats the playRound function for 5 rounds and returns the variable 
+        // 'numberOfPlayerWins' with the number of player wins.
+        function game () {
+
+            let numberOfPlayerWins = 0
+            let numberOfComputerWins = 0
+
+            for (let i = 0; i < 5; i++) {
+
+                if (playRound(getPlayerSelection(), getComputerChoice()) === 'Player wins round') {
+                    console.log(++numberOfPlayerWins);
+                }
+                else {
+                    console.log(++numberOfComputerWins);
+                }
+            }
+            return ++numberOfPlayerWins;
+        }
+
+        // Function that takes the parameter 'numberOfPlayerWins' and determines the overall winner of the game.
+        function printWinner (numberOfPlayerWins) {
+
+            if (numberOfPlayerWins >= 3) {
+                console.log ('YOU WON!!')
+            }
+            else { 
+                console.log('YOU LOST.')
+            }
+        }
+
+        printWinner(game());
+
     </script>
 </body>
 </html>
