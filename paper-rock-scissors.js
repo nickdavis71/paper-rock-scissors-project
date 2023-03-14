@@ -1,18 +1,25 @@
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener('click',() => getPlayerSelection(button.id));
+    button.addEventListener('click',() => {
+        logScore(playRound(getPlayerSelection(button.id), getComputerChoice()));
+    })
 });
 
 // Function that stores user input as a string in the variable 'playerSelection'.
 function getPlayerSelection(button) {
-   console.log(button)
     let playerSelection = '';
-    if(button === '1')
-        return playerSelection = 'paper';
-    if(button === '2')
-        return playerSelection = 'rock';
-    if(button === '3')
-        return playerSelection = 'scissors';
+    if(button === '1') {
+        playerSelection = 'paper';
+        return playerSelection;  
+    }
+    if(button === '2') {
+        playerSelection = 'rock'
+        return playerSelection
+    }
+    if(button === '3') {
+        playerSelection = 'scissors'
+        return playerSelection
+    }
  //   let playerSelection = prompt('Please enter your selection: Paper Rock or Scissors','');
  //   playerSelection = playerSelection.toLowerCase();
  //   console.log("Player Selected: " + playerSelection);
@@ -27,7 +34,7 @@ function getComputerChoice() {
     if (computerChoice === 0) {
         console.log('Computer Selected: paper');
         let computerSelection = 'paper';
-        return computerSelection;
+        return 'paper'
     }
     else if (computerChoice === 1) {
         console.log('Computer Selected: rock');
@@ -57,8 +64,10 @@ function playRound (playerSelection, computerSelection) {
         
     }
     else if (playerSelection === computerSelection) {
+        console.log(playerSelection)
+        console.log(computerSelection)
         console.log ('Tie');
-        return playRound (getPlayerSelection(),getComputerChoice());
+        return 'Tie';
     }
     else {
         console.log('Computer wins round');
@@ -96,5 +105,28 @@ function printWinner (numberOfPlayerWins) {
     }
 }
 
-printWinner(game());
 
+const score = document.querySelector('#score');
+const playerWinLog = document.createElement('p');
+const computerWinLog = document.createElement('p');
+const tieLog = document.createElement('p');
+
+let numberOfPlayerWins = 0;
+let numberOfComputerWins = 0;
+let ties = 0;
+
+function logScore(roundWinner) {
+    if (roundWinner === 'Player wins round') {
+        playerWinLog.textContent = `Player Wins: ${++numberOfPlayerWins}` 
+    }
+    if (roundWinner === 'Computer wins round') {
+        computerWinLog.textContent = `Computer Wins: ${++numberOfComputerWins}`
+    }
+    if (roundWinner === 'Tie') {
+        tieLog.textContent = `Ties: ${++ties}`
+    }
+}
+
+score.appendChild(playerWinLog);
+score.appendChild(computerWinLog);
+score.appendChild(tieLog);
