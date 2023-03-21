@@ -18,15 +18,15 @@ selection.appendChild(computerSelection);
 // Function that stores user's button selection as a string in the variable 'playerSelection'.
 
 function getPlayerSelection(button) {
-    if(button === '1') {
+    if(button === 'paper-button') {
         playerSelection.textContent = 'Player Selected: Paper';
         return 'paper';  
     }
-    if(button === '2') {
+    if(button === 'rock-button') {
         playerSelection.textContent = 'Player Selected: Rock';
         return 'rock';
     }
-    if(button === '3') {
+    if(button === 'scissors-button') {
         playerSelection.textContent = 'Player Selected: Scissors';
         return 'scissors';
     }
@@ -103,8 +103,9 @@ function logScore(roundWinner) {
     }
 }
 
-const winner = document.createElement('p');
-score.appendChild(winner);
+const winner = document.querySelector('#winner');
+const gameResult = document.createElement('p')
+winner.appendChild(gameResult);
 
 // Function that takes the logScore function as a parameter and prints the overall winner of 
 // the game.
@@ -112,9 +113,10 @@ score.appendChild(winner);
 function printWinner (numberOfWins) {
 
     if (numberOfPlayerWins >= 5) {
-        winner.textContent ='YOU WON!!';
+        gameResult.textContent ='YOU WON!!';
     }
     else if (numberOfComputerWins >= 5){ 
-        winner.textContent ='YOU LOST.';
+        gameResult.textContent ='YOU LOST.';
     }
 }
+
