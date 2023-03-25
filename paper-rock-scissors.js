@@ -6,6 +6,11 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click',() => {
         printWinner(logScore(playRound(getPlayerSelection(button.id), getComputerChoice())));
+
+        // Disables buttons after winner is displayed
+        if (numberOfPlayerWins === 5 || numberOfComputerWins === 5) {
+            event.target.disabled = true;
+        }
     })
 });
 
@@ -90,11 +95,11 @@ let numberOfTies = 0;
 function logScore(roundWinner) {
     
     if (roundWinner === 'Player wins round') {
-        playerWinLog.textContent = `Player Wins: ${++numberOfPlayerWins}`;
+        playerWinLog.textContent = `Player: ${++numberOfPlayerWins}`;
         return numberOfPlayerWins;
     }
     if (roundWinner === 'Computer wins round') {
-        computerWinLog.textContent = `Computer Wins: ${++numberOfComputerWins}`;
+        computerWinLog.textContent = `Computer: ${++numberOfComputerWins}`;
         return numberOfComputerWins;
     }
     if (roundWinner === 'Tie') {
