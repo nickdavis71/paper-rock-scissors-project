@@ -5,12 +5,12 @@
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click',() => {
-        printWinner(logScore(playRound(getPlayerSelection(button.id), getComputerChoice())));
-
         // Disables buttons after winner is displayed
         if (numberOfPlayerWins === 5 || numberOfComputerWins === 5) {
             event.target.disabled = true;
+            return
         }
+        printWinner(logScore(playRound(getPlayerSelection(button.id), getComputerChoice())));
     })
 });
 
