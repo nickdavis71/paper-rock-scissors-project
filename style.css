@@ -1,0 +1,98 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    background-color: #26006e;
+    color: white;
+    font-size: 30px;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1;
+    padding: 100px;
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    gap: 10px;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+button {
+    min-width: 300px;
+    min-height: 300px;
+    padding: 25px 50px;
+    font-size: 24px;
+    border-radius: 20px;
+    border: 5px solid white;
+    background-position: center;
+}
+
+#paper-button { 
+    background: url(./img/paper.png);
+    background-size: 100% 100%;
+}
+
+#rock-button { 
+    background: url(./img/rock.png);
+    background-size: 100% 100%;
+}
+
+#scissors-button { 
+    background: url(./img/scissors.png);
+    background-size: 100% 100%;
+}
+
+button:hover {
+    border: none;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+#selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#winner {
+    display: flex;
+    justify-content: center;
+}
+
+#winner p {
+    font-size: 35px;
+    color: yellow;
+}
+
+p:empty {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#footer img {
+    height: 30px;
+    width: 30px;
+}
